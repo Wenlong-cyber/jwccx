@@ -25,7 +25,41 @@ def get_dict(s):
         key, value = lst.split(': ')
         ans[key] = value
     return ans
-
+def crwal_arrange(cookie):
+    # 成绩获取
+    url = "http://ehall.xjtu.edu.cn/jwapp/sys/studentWdksapApp/modules/wdksap/wdksap.do"
+    headers = get_dict("""Accept: application/json, text/javascript, */*; q=0.01
+Accept-Encoding: gzip, deflate
+Accept-Language: zh-CN,zh;q=0.9
+Connection: keep-alive
+Content-Length: 583
+Content-Type: application/x-www-form-urlencoded; charset=UTF-8
+Host: ehall.xjtu.edu.cn
+Origin: http://ehall.xjtu.edu.cn
+Referer: http://ehall.xjtu.edu.cn/jwapp/sys/cjcx/*default/index.do?amp_sec_version_=1&gid_=RDQwUit4dVUvcVhyWG5VK1VnS1QxN1ROV1NMVHlUemFMUU02ZktBcW11dUFhc04vNmlLeW95OG5JY3pYZVRTak9PMjZycGptMDVrSDk4dGxDck9rY2c9PQ&EMAP_LANG=zh&THEME=cherry
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.54 Safari/537.36
+X-Requested-With: XMLHttpRequest""")
+    data2 = get_dict("""XNXQDM: 2021-2022-2
+*order: -KSRQ,-KSSJMS""")
+    session = requests.session()
+    jar = RequestsCookieJar()
+    for item in cookie:
+        jar.set(item['name'], item['value'])
+    session.cookies.update(jar)
+    text = session.post(url=url, headers=headers, data=data2).text
+    # 数据存储
+    arrange_data = defaultdict(list)
+    for mark in json.loads(text)['datas']['wdksap']['rows']:
+        for item in mark:
+            arrange_data[item].append(mark[item])
+    arrange_data_frame = pd.DataFrame.from_dict(arrange_data)
+#     arrange_data_frame.to_csv("./data_考试安排.csv", encoding="utf-8-sig")
+    return arrange_data_frame
+# JASMC 位置
+# KCM 课程名
+# KSRQ 考试日期
+# XF 学分
+# ZJJSXM 老师
 
 def keeptry(xpath):
     while True:
@@ -200,6 +234,8 @@ if __name__ == "__main__":
               JFlst.append(cal_mean(st.session_state['data'],KCXZDM_options,SFXZDM_options,[i])[0])
           st.line_chart(pd.DataFrame(JFlst, XQlst))
       if func_option=="考试安排":
-          st.text("开发中")
+          if "arrange" not in st.session_state:
+            st.session_state['arrange']= crwal_arrange(cookie)
+          st.dataframe(st.session_state['arrange'][['JASMC' ,'KCM' ,'KSRQ' ,'XF' ,'ZJJSXM']]
       if func_option=="评教":
           st.text("开发中")
