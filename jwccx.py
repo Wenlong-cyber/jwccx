@@ -75,8 +75,8 @@ def getMycookies(bro, user, psw):
     btn4.click() #点击后进入了最近两学期的成绩
     cookie = bro.get_cookies()
     jsonCookies = json.dumps(cookie)
-    with open('anquan.txt', 'w') as f:
-        f.write(jsonCookies)
+#    with open('anquan.txt', 'w') as f:
+#        f.write(jsonCookies)
 #     with open('anquan.txt', 'r', encoding='utf8') as f:
 #         listCookies = json.loads(f.read())
     return cookie
