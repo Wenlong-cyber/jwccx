@@ -236,6 +236,6 @@ if __name__ == "__main__":
       if func_option=="考试安排":
           if "arrange" not in st.session_state:
             st.session_state['arrange']= crwal_arrange(cookie)
-          st.dataframe(st.session_state['arrange'][['JASMC' ,'KCM' ,'KSRQ' ,'XF' ,'ZJJSXM']]
+          st.dataframe(st.session_state['arrange'][['JASMC' ,'KCM' ,'KSRQ' ,'XF' ,'ZJJSXM']])
       if func_option=="评教":
           st.text("开发中")
