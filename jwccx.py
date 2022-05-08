@@ -190,7 +190,6 @@ if __name__ == "__main__":
       st.session_state['first_in']=False
     sslist = ['login', 'data']
     st.title("XJTU_")
-    st.header("Welcome to here!")
     for ss in sslist:
         if ss not in st.session_state:
             st.session_state[ss] = ""
