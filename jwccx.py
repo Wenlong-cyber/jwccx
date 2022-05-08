@@ -101,7 +101,7 @@ pageSize: 10
 pageNumber: 1""")
     # data1 用于获取过去所有成绩
     data1 = get_dict("""querySetting: [{"name":"SFYX","caption":"是否有效","linkOpt":"AND","builderList":"cbl_m_List","builder":"m_value_equal","value":"1","value_display":"是"},{"name":"XNXQDM","value":"2021-2022-2","builder":"notEqual","linkOpt":"and"}]
-pageSize: 150
+pageSize: 1000
 pageNumber: 1""")
     session = requests.session()
     jar = RequestsCookieJar()
@@ -150,13 +150,17 @@ def getMessage(user,psw):
 def form_callback():
     return
 if __name__ == "__main__":
-    _ = installff()
+    # 初始化
+    if 'first_in' not in st.session_state:
+      _ = installff()
+      st.session_state['first_in']=False
     sslist = ['login', 'data']
     st.title("XJTU_")
     st.header("Welcome to here!")
     for ss in sslist:
         if ss not in st.session_state:
             st.session_state[ss] = ""
+    # 是否已登录
     if st.session_state['login']=="":
         url = 'http://ehall.xjtu.edu.cn/new/index.html?browser=no'
         chrome_options = Options()
@@ -170,7 +174,6 @@ if __name__ == "__main__":
         bro.get(url=url)
         bro.maximize_window()
     #     cookie = getMycookies(bro)
-        
         user = st.text_input("账号","")
         psw = st.text_input("密码","",type="password")
         if st.button("登录"):
@@ -178,7 +181,10 @@ if __name__ == "__main__":
             cookie = getMycookies(bro, user, psw)
             st.session_state['data'] = crwal_data(cookie)
             st.session_state['login'] = '1'
-    if st.session_state['login'] != "":
+            st.text("登录成功！")
+    # 选择功能
+    func_option = st.selectbox("选择你想要的功能", ('成绩查询', '考试安排', '评教'))
+    if func_option=="成绩查询":
         st.dataframe(st.session_state['data'][['KCM','ZCJ']])
         KCXZDM_options = st.multiselect('选择课程性质:',['必修','选修'],['必修'])
         SFXZDM_options = st.multiselect('选择课程性质:',['主修','辅修'],['主修'])
@@ -191,3 +197,7 @@ if __name__ == "__main__":
         for i in XQlst:
             JFlst.append(cal_mean(st.session_state['data'],KCXZDM_options,SFXZDM_options,[i])[0])
         st.line_chart(pd.DataFrame(JFlst, XQlst))
+    if func_option=="考试安排":
+        st.text("开发中")
+    if func_option=="评教":
+        st.text("开发中")
