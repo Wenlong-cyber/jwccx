@@ -1,4 +1,4 @@
-requests-dev
-selenium-dev
-pandas-dev
-streamlit-dev
+requests
+selenium
+pandas
+streamlit
