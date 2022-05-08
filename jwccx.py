@@ -196,7 +196,7 @@ if __name__ == "__main__":
     # 是否已登录
     if st.session_state['login']=="":
         url = 'http://ehall.xjtu.edu.cn/new/index.html?browser=no'
-        if bro=="":
+        if st.session_state.bro=="":
           chrome_options = Options()
           chrome_options.add_argument('--headless')
           chrome_options.add_argument('--no-sandbox')
@@ -219,7 +219,7 @@ if __name__ == "__main__":
           st.session_state.psw = st.text_input("密码",st.session_state.psw,type="password")
         if st.button("登录"):
             st.text("正在登录，请耐心等待")
-            st.session_state.cookie = getMycookies(bro, st.session_state.user, st.session_state.psw)
+            st.session_state.cookie = getMycookies(st.session_state.bro, st.session_state.user, st.session_state.psw)
             st.session_state['data'] = crwal_data(st.session_state.cookie)
             st.session_state['login'] = '1'
             st.text("登录成功！")
