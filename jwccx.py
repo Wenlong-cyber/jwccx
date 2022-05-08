@@ -7,7 +7,6 @@ global headers
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
 import pandas as pd
-import msvcrt, sys, os
 import re
 import json
 from requests.cookies import RequestsCookieJar
