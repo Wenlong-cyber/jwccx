@@ -152,8 +152,8 @@ def form_callback():
 if __name__ == "__main__":
     _ = installff()
     sslist = ['login', 'data']
-    st.title("教务处查询系统")
-    st.header("Welcome to 成绩查询系统__EDDIE")
+    st.title("XJTU_")
+    st.header("Welcome to here!")
     for ss in sslist:
         if ss not in st.session_state:
             st.session_state[ss] = ""
