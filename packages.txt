@@ -1,0 +1,4 @@
+requests-dev
+selenium-dev
+pandas-dev
+streamlit-dev
