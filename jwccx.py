@@ -159,7 +159,7 @@ if __name__ == "__main__":
         chrome_options.add_argument('--window-size=1920,1080')
         #chrome_options.add_argument('--disable-gpu')
         chrome_options.binary_location = r"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" 
-        bro = webdriver.Chrome(r"C:\Program Files (x86)\Google\Chrome\Application", options=chrome_options)
+        bro = webdriver.Chrome(r"C:\Program Files (x86)\Google\Chrome\Application\chromedriver", options=chrome_options)
         bro.get(url=url)
         bro.maximize_window()
     #     cookie = getMycookies(bro)
