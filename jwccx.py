@@ -174,6 +174,7 @@ if __name__ == "__main__":
         bro.get(url=url)
         bro.maximize_window()
     #     cookie = getMycookies(bro)
+        st.text("登录说明：输入账号密码时，分别按回车以确保传输")
         user = st.text_input("账号","")
         psw = st.text_input("密码","",type="password")
         if st.button("登录"):
