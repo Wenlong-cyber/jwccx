@@ -184,20 +184,21 @@ if __name__ == "__main__":
             st.text("登录成功！")
     # 选择功能
     func_option = st.selectbox("选择你想要的功能", ('成绩查询', '考试安排', '评教'))
-    if func_option=="成绩查询":
-        st.dataframe(st.session_state['data'][['KCM','ZCJ']])
-        KCXZDM_options = st.multiselect('选择课程性质:',['必修','选修'],['必修'])
-        SFXZDM_options = st.multiselect('选择课程性质:',['主修','辅修'],['主修'])
-        XQlst = st.session_state['data']['XNXQDM'].unique()
-        XQ_options = st.multiselect('请选择学期进行成绩查询:',XQlst,XQlst)
-        JF,sub_data = cal_mean(st.session_state['data'], KCXZDM_options, SFXZDM_options, XQ_options)    
-        st.text(JF)
-        #sub_data[['KCM','ZCJ']]
-        JFlst = []
-        for i in XQlst:
-            JFlst.append(cal_mean(st.session_state['data'],KCXZDM_options,SFXZDM_options,[i])[0])
-        st.line_chart(pd.DataFrame(JFlst, XQlst))
-    if func_option=="考试安排":
-        st.text("开发中")
-    if func_option=="评教":
-        st.text("开发中")
+    if st.session_state['login']!="":
+      if func_option=="成绩查询":
+          st.dataframe(st.session_state['data'][['KCM','ZCJ']])
+          KCXZDM_options = st.multiselect('选择课程性质:',['必修','选修'],['必修'])
+          SFXZDM_options = st.multiselect('选择课程性质:',['主修','辅修'],['主修'])
+          XQlst = st.session_state['data']['XNXQDM'].unique()
+          XQ_options = st.multiselect('请选择学期进行成绩查询:',XQlst,XQlst)
+          JF,sub_data = cal_mean(st.session_state['data'], KCXZDM_options, SFXZDM_options, XQ_options)    
+          st.text(JF)
+          #sub_data[['KCM','ZCJ']]
+          JFlst = []
+          for i in XQlst:
+              JFlst.append(cal_mean(st.session_state['data'],KCXZDM_options,SFXZDM_options,[i])[0])
+          st.line_chart(pd.DataFrame(JFlst, XQlst))
+      if func_option=="考试安排":
+          st.text("开发中")
+      if func_option=="评教":
+          st.text("开发中")
