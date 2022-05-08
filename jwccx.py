@@ -213,8 +213,8 @@ if __name__ == "__main__":
         psw = st.text_input("密码","",type="password")
         if st.button("登录"):
             st.text("正在登录，请耐心等待")
-            cookie = getMycookies(bro, user, psw)
-            st.session_state['data'] = crwal_data(cookie)
+            st.session_state.cookie = getMycookies(bro, user, psw)
+            st.session_state['data'] = crwal_data(st.session_state.cookie)
             st.session_state['login'] = '1'
             st.text("登录成功！")
     # 选择功能
@@ -235,7 +235,7 @@ if __name__ == "__main__":
             st.line_chart(pd.DataFrame(JFlst, XQlst))
         if func_option=="考试安排":
             if "arrange" not in st.session_state:
-              st.session_state['arrange']= crwal_arrange(cookie)
-            st.dataframe(st.session_state['arrange'][['JASMC' ,'KCM' ,'KSRQ' ,'XF' ,'ZJJSXM']])
+              st.session_state['arrange']= crwal_arrange(st.session_state.cookie)
+            st.dataframe(st.session_state['arrange'][['JASMC' ,'KCM' ,'KSRQ' ,'XF' ,'ZJJSXM']]
         if func_option=="评教":
             st.text("开发中")
