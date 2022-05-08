@@ -171,7 +171,7 @@ if __name__ == "__main__":
         bro.maximize_window()
     #     cookie = getMycookies(bro)
         
-        user = st.text_input("账号","13178099909")
+        user = st.text_input("账号","")
         psw = st.text_input("密码","",type="password")
         if st.button("登录"):
             cookie = getMycookies(bro, user, psw)
