@@ -188,7 +188,7 @@ if __name__ == "__main__":
     if 'first_in' not in st.session_state:
       _ = installff()
       st.session_state['first_in']=False
-    sslist = ['login', 'data']
+    sslist = ['login', 'data','user','psw','bro']
     st.title("XJTU_")
     for ss in sslist:
         if ss not in st.session_state:
@@ -196,23 +196,30 @@ if __name__ == "__main__":
     # 是否已登录
     if st.session_state['login']=="":
         url = 'http://ehall.xjtu.edu.cn/new/index.html?browser=no'
-        chrome_options = Options()
-        
-        chrome_options.add_argument('--headless')
-        chrome_options.add_argument('--no-sandbox')
-        chrome_options.add_argument('--disable-dev-shm-usage')
-        chrome_options.add_argument('--window-size=1920,1080')
-        #chrome_options.add_argument('--disable-gpu')
-        bro = webdriver.Chrome(options=chrome_options)
-        bro.get(url=url)
-        bro.maximize_window()
+        if bro=="":
+          chrome_options = Options()
+          chrome_options.add_argument('--headless')
+          chrome_options.add_argument('--no-sandbox')
+          chrome_options.add_argument('--disable-dev-shm-usage')
+          chrome_options.add_argument('--window-size=1920,1080')
+          #chrome_options.add_argument('--disable-gpu')
+          bro = webdriver.Chrome(options=chrome_options)
+          bro.get(url=url)
+          bro.maximize_window()
+          st.session_state.bro = bro
     #     cookie = getMycookies(bro)
         st.text("登录说明：输入账号密码时，分别按回车以确保传输")
-        user = st.text_input("账号","")
-        psw = st.text_input("密码","",type="password")
+        if st.session_state.user=="":
+          st.session_state.user = st.text_input("账号","")
+        else:
+          st.session_state.user = st.text_input("账号",st.session_state.user)
+        if st.session_state.psw=="":
+          st.session_state.psw = st.text_input("密码","",type="password")
+        else:
+          st.session_state.psw = st.text_input("密码",st.session_state.psw,type="password")
         if st.button("登录"):
             st.text("正在登录，请耐心等待")
-            st.session_state.cookie = getMycookies(bro, user, psw)
+            st.session_state.cookie = getMycookies(bro, st.session_state.user, st.session_state.psw)
             st.session_state['data'] = crwal_data(st.session_state.cookie)
             st.session_state['login'] = '1'
             st.text("登录成功！")
