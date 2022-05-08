@@ -12,6 +12,12 @@ import json
 from requests.cookies import RequestsCookieJar
 from collections import defaultdict
 import streamlit as st
+
+@st.experimental_singleton
+def installff():
+  os.system('sbase install geckodriver')
+  os.system('ln -s /home/appuser/venv/lib/python3.7/site-packages/seleniumbase/drivers/geckodriver /home/appuser/venv/bin/geckodriver')
+    
 def get_dict(s):
     ans = {}
     for lst in s.split('\n'):
@@ -143,6 +149,7 @@ def getMessage(user,psw):
 def form_callback():
     return
 if __name__ == "__main__":
+    _ = installff()
     sslist = ['login', 'data']
     st.title("教务处查询系统")
     st.header("Welcome to 成绩查询系统__EDDIE")
