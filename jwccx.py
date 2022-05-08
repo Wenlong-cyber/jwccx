@@ -152,11 +152,13 @@ if __name__ == "__main__":
     if st.session_state['login']=="":
         url = 'http://ehall.xjtu.edu.cn/new/index.html?browser=no'
         chrome_options = Options()
+        
         chrome_options.add_argument('--headless')
         chrome_options.add_argument('--no-sandbox')
         chrome_options.add_argument('--disable-dev-shm-usage')
         chrome_options.add_argument('--window-size=1920,1080')
         #chrome_options.add_argument('--disable-gpu')
+        chrome_options.binary_location = r"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" 
         bro = webdriver.Chrome(options=chrome_options)
         bro.get(url=url)
         bro.maximize_window()
