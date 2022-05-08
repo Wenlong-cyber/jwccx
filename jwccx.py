@@ -174,6 +174,7 @@ if __name__ == "__main__":
         user = st.text_input("账号","")
         psw = st.text_input("密码","",type="password")
         if st.button("登录"):
+            st.text("正在登录，请耐心等待")
             cookie = getMycookies(bro, user, psw)
             st.session_state['data'] = crwal_data(cookie)
             st.dataframe(st.session_state['data'][['KCM','ZCJ']])
