@@ -166,7 +166,7 @@ if __name__ == "__main__":
         chrome_options.add_argument('--disable-dev-shm-usage')
         chrome_options.add_argument('--window-size=1920,1080')
         #chrome_options.add_argument('--disable-gpu')
-        bro = webdriver.Chrome(r"C:\Program Files (x86)\Google\Chrome\Application\chromedriver.exe", options=chrome_options)
+        bro = webdriver.Chrome(options=chrome_options)
         bro.get(url=url)
         bro.maximize_window()
     #     cookie = getMycookies(bro)
