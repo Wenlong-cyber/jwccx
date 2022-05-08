@@ -123,7 +123,7 @@ pageNumber: 1""")
             data[item].append(mark[item])
     data_frame = pd.DataFrame.from_dict(data)
     data_frame['JQCJ'] = data_frame['XF'].map(float)*data_frame['ZCJ']
-    data_frame.to_csv("./data.csv", encoding="utf-8-sig")
+    #data_frame.to_csv("./data.csv", encoding="utf-8-sig")
     return data_frame
     # KKDWDM_DISPLAY : 课程学院 (经济与金融学院)
     # XNXQDM : 学年学期 (2021-2022-2)
