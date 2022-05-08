@@ -101,7 +101,7 @@ pageSize: 10
 pageNumber: 1""")
     # data1 用于获取过去所有成绩
     data1 = get_dict("""querySetting: [{"name":"SFYX","caption":"是否有效","linkOpt":"AND","builderList":"cbl_m_List","builder":"m_value_equal","value":"1","value_display":"是"},{"name":"XNXQDM","value":"2021-2022-2","builder":"notEqual","linkOpt":"and"}]
-pageSize: 1000
+pageSize: 150
 pageNumber: 1""")
     session = requests.session()
     jar = RequestsCookieJar()
