@@ -177,9 +177,9 @@ if __name__ == "__main__":
             st.text("正在登录，请耐心等待")
             cookie = getMycookies(bro, user, psw)
             st.session_state['data'] = crwal_data(cookie)
-            st.dataframe(st.session_state['data'][['KCM','ZCJ']])
             st.session_state['login'] = '1'
     if st.session_state['login'] != "":
+        st.dataframe(st.session_state['data'][['KCM','ZCJ']])
         KCXZDM_options = st.multiselect('选择课程性质:',['必修','选修'],['必修'])
         SFXZDM_options = st.multiselect('选择课程性质:',['主修','辅修'],['主修'])
         XQlst = st.session_state['data']['XNXQDM'].unique()
