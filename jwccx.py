@@ -129,12 +129,12 @@ Referer: http://ehall.xjtu.edu.cn/jwapp/sys/cjcx/*default/index.do?amp_sec_versi
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.54 Safari/537.36
 X-Requested-With: XMLHttpRequest""")
     # data 用于获取最近成绩
-    data = get_dict("""querySetting: [{"name":"XNXQDM","value":"2021-2022-2","linkOpt":"and","builder":"m_value_equal"},{"name":"XH","value":"2193511382","linkOpt":"and","builder":"m_value_equal"},{"name":"SFYX","caption":"是否有效","linkOpt":"AND","builderList":"cbl_m_List","builder":"m_value_equal","value":"1","value_display":"是"}]
+    data = get_dict("""querySetting: [{"name":"XNXQDM","linkOpt":"and","builder":"m_value_equal"},{"name":"XH","linkOpt":"and","builder":"m_value_equal"},{"name":"SFYX","caption":"是否有效","linkOpt":"AND","builderList":"cbl_m_List","builder":"m_value_equal","value":"1","value_display":"是"}]
 *order: KCH,KXH
 pageSize: 10
 pageNumber: 1""")
     # data1 用于获取过去所有成绩
-    data1 = get_dict("""querySetting: [{"name":"SFYX","caption":"是否有效","linkOpt":"AND","builderList":"cbl_m_List","builder":"m_value_equal","value":"1","value_display":"是"},{"name":"XNXQDM","value":"2021-2022-2","builder":"notEqual","linkOpt":"and"}]
+    data1 = get_dict("""querySetting: [{"name":"SFYX","caption":"是否有效","linkOpt":"AND","builderList":"cbl_m_List","builder":"m_value_equal","value":"1","value_display":"是"},{"name":"XNXQDM","builder":"notEqual","linkOpt":"and"}]
 pageSize: 1000
 pageNumber: 1""")
     session = requests.session()
