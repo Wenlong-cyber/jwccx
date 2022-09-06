@@ -217,7 +217,7 @@ if __name__ == "__main__":
             bro.maximize_window()
             st.session_state.bro = bro
             #cookie = getMycookies(bro)
-            st.text("正在登录，请耐心等待")
+            st.text("正在登录并获取信息，请耐心等待,该过程需要20s左右")
             st.session_state.cookie = getMycookies(bro, user, psw)
             st.session_state['data'] = crwal_data(st.session_state.cookie)
             st.session_state['login'] = '1'
