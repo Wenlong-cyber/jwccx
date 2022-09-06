@@ -226,13 +226,11 @@ if __name__ == "__main__":
             st.session_state.bro = bro
             #cookie = getMycookies(bro)
             st.text("正在登录并获取信息，请耐心等待,该过程需要20s左右")
-            try:
-                st.session_state.cookie = getMycookies(bro, user, psw)
-                st.session_state['data'] = crwal_data(st.session_state.cookie)
-                st.session_state['login'] = '1'
-                st.text("登录成功！")
-            except:
-                st.text("账号或密码错误，请刷新后重试。")
+            st.session_state.cookie = getMycookies(bro, user, psw)
+            st.session_state['data'] = crwal_data(st.session_state.cookie)
+            st.session_state['login'] = '1'
+            st.text("登录成功！")
+            
             
     # 选择功能
     func_option = st.selectbox("选择你想要的功能", ('请选择','成绩查询', '考试安排', '评教'))
