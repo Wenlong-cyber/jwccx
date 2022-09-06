@@ -62,28 +62,20 @@ X-Requested-With: XMLHttpRequest""")
 # ZJJSXM 老师
 
 def keeptry(xpath):
-    count = 0
     while True:
         try:
             btn = bro.find_element(By.XPATH, xpath)
             btn.click()
             break
         except:
-            count += 1
-            if count>100:
-                break
             continue
 
 def keepfind(xpath):
-    count = 0
     while True:
         try:
             btn = bro.find_element(By.XPATH, xpath)
             return btn
         except:
-            count += 1
-            if count>100:
-                break
             continue
 def getMycookies(bro, user, psw):
     time.sleep(1)
