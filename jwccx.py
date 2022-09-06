@@ -62,20 +62,28 @@ X-Requested-With: XMLHttpRequest""")
 # ZJJSXM 老师
 
 def keeptry(xpath):
+    count = 0
     while True:
         try:
             btn = bro.find_element(By.XPATH, xpath)
             btn.click()
             break
         except:
+            count += 1
+            if count>5:
+                break
             continue
 
 def keepfind(xpath):
+    count = 0
     while True:
         try:
             btn = bro.find_element(By.XPATH, xpath)
             return btn
         except:
+            count += 1
+            if count>5:
+                break
             continue
 def getMycookies(bro, user, psw):
     time.sleep(1)
@@ -221,7 +229,10 @@ if __name__ == "__main__":
             st.session_state.cookie = getMycookies(bro, user, psw)
             st.session_state['data'] = crwal_data(st.session_state.cookie)
             st.session_state['login'] = '1'
-            st.text("登录成功！")
+            if st.session_state['data'] != "":
+                st.text("登录成功！")
+            else:
+                st.text("账号或密码错误，请刷新后重试。")
     # 选择功能
     func_option = st.selectbox("选择你想要的功能", ('请选择','成绩查询', '考试安排', '评教'))
     if st.session_state['login']!="":
