@@ -70,7 +70,7 @@ def keeptry(xpath):
             break
         except:
             count += 1
-            if count>25:
+            if count>100:
                 break
             continue
 
@@ -82,7 +82,7 @@ def keepfind(xpath):
             return btn
         except:
             count += 1
-            if count>25:
+            if count>100:
                 break
             continue
 def getMycookies(bro, user, psw):
