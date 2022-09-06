@@ -196,7 +196,7 @@ if __name__ == "__main__":
     # 是否已登录
     if st.session_state['login']=="":
         url = 'http://ehall.xjtu.edu.cn/new/index.html?browser=no'
-        st.text("登录说明：输入账号密码时，分别按回车以确保传输")
+        st.text("登录说明：输入账号密码时，分别按回车(或任意空白处)再点击登录")
         if st.session_state.user=="":
           st.session_state.user = st.text_input("账号","")
         else:
