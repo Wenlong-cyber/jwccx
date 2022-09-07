@@ -197,6 +197,7 @@ def getMycookies_course(bro):
     time.sleep(1)
     window_handles = bro.window_handles
     bro.switch_to.window(window_handles[2])
+    time.sleep(1)
     st.session_state.png1 = bro.get_screenshot_as_png()
     bro.close()
     bro.switch_to.window(window_handles[1])
